@@ -12,7 +12,7 @@ html {
 
 /* ----- BODY ----- */
 body {
-    background-image: url(../images/home.jpg);
+    background-color: white;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -20,20 +20,31 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
+.myBody {
+    margin-top: 20vh;
+    background-color: white;
+}
+
 .photoAlbum {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Forces 3 columns of equal width*/
+    background: #0047AB;
+    grid-template-columns: repeat(2, 1fr); /* Forces 3 columns of equal width*/
+    margin: 10vh 25vh 10vh;
     gap: 20px;
     padding: 20px;
 }
+.mobilePhotoAlbum {
+    display: grid;
+    background: #0047AB;
+    grid-template-columns: repeat(1);
+    gap: 20px;
+}
 .photoItem {
-    background-color: #fff;
+    background-color: white;
     display: flex;
-    border: 0.5px solid #ccc;
     padding: 5px;
     box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
 }
-
 .photoItem img {
     width: 100%;
     height: 100%;
@@ -41,17 +52,49 @@ body {
 }
 /* ----- BODY ----- */
 
-
 /* ----- HEADINGS & HR ----- */
 h1 {
-    text-align:  center;
-    font-size: 72px;
-    color: #ECDFCC;
-    letter-spacing: 5px;
-    text-shadow: -2px -2px 0 #2D2424, 2px -2px 0 #2D2424, -2px 2px 0 #2D2424, 5px 2px 0 #2D2424;
-}
+    font-size: 4.286em; /* 60px */
+    margin-bottom: 24px;
+    width: auto;
+    color: #0047AB;
+    text-align: center;
+    }
+    /* Portrait and Landscape */
+    
+    @media only screen 
+    and (min-device-width: 240px) 
+    and (max-device-width: 480px)
+    and (-webkit-min-device-pixel-ratio: 2) {
+    h1 {
+    font-size: 4em; /* a little smaller*/
+    }
+    }
+    /* Portrait */
+    @media only screen 
+    and (min-device-width: 240px) 
+    and (max-device-width: 480px)
+    and (-webkit-min-device-pixel-ratio: 2)
+    and (orientation: portrait) {
+    h1 {
+    font-size: 3.5em; /* a little smaller*/
+    }
+    }
+    
+    /* Landscape */
+    @media only screen 
+    and (min-device-width: 320px) 
+    and (max-device-width: 480px)
+    and (-webkit-min-device-pixel-ratio: 2)
+    and (orientation: landscape) {
+    h1 {
+    font-size: 3em; /* a little smaller*/
+    }
+    
+    } 
 h2 {
     font-size: 56px;
+    font-weight: bold;
     color: #2D2424;
     letter-spacing: 5px;
 }
@@ -60,11 +103,19 @@ h2 {
     color: #E0C097;
 }
 hr {
-    margin: 5px;
+    margin: 5vh 25vw 5vh;
     height: 5px;
-    color: #3C3D37;
-    background-color: #3C3D37;
+    color: #FF4C00;
+    background-color: #FF4C00;
     border-width: 0;
+}
+p {
+    font-size: 28px;
+    margin-left: 25%;
+    margin-right: 25%;
+    font-style: italic;
+    color: #0047AB;
+    text-align: center;
 }
 /* ----- HEADINGS & HR ----- */
 
@@ -72,7 +123,8 @@ hr {
 /* ----- ANCHORS ----- */
 a {
     text-decoration: none;
-    color: #3C3D37;
+    color: #0047AB;
+    font-size: 19px;
 }
 #closeMe {
     font-size: 32px;
@@ -91,8 +143,8 @@ a {
 /* ----- NAVIGATION ----- */
 /* -- MAIN NAVBAR -- */
 nav {
-    width: 100%;
-    background-image: linear-gradient(#5699aa, #69a8ba);
+    width: 100vw;
+    background-color: white;
     box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
 }
 nav ul {
@@ -113,13 +165,14 @@ nav a {
     height: 100%;
 }
 nav a:hover {
-    background-color: #808080;
+    background-color: #0047AB;
+    color: white;
 }
 nav li:first-child {
     margin-right: auto;
 }
 a.active {
-    color: rgb(211, 218, 223);
+    color: #FF4C00;
 }
 /* -- SIDEBAR -- */
 .sidebar {
@@ -157,8 +210,9 @@ a.lowerSideBar:hover{
     backdrop-filter: blur(10px);
     top: 10vh;
     right: 0;
+    bottom: 0;
     width: 250px;
-    height: 75vh;
+    height: auto;
     z-index: 100;
 }
 .morebar li {
@@ -169,6 +223,49 @@ a.lowerSideBar:hover{
 }
 /* ----- NAVIGATION ----- */
 
+
+/* Navigation menu */
+/* •••••••••••••••••••••••••••••••• */
+
+.menu {
+    position: fixed;
+    width: 100vw;
+    pointer-events: none;
+    margin-top: 10vh;
+    text-align: center;
+    z-index: 2; }
+    
+    /* Menu link item */
+    .menu__link {
+    display: inline-block;
+    text-decoration: none;
+    border: 2px solid #263238;
+    color: #263238; 
+    pointer-events: auto;
+    line-height: 40px; 
+    position: relative;
+    padding: 0 50px; 
+    box-sizing: border-box;
+    margin: 0;
+    user-select: none;
+    overflow: hidden;
+    border-radius: 50px;
+    
+      &::before {
+      content: attr(data-hover);
+      background-color: #263238; 
+      color: #FFF;
+      position: absolute;
+      top: 100%;
+      bottom: 0;
+      left: 0;
+      transition: all 300ms cubic-bezier(0.190, 1.000, 0.560, 1.000);
+      right: 0; }
+      
+    
+      &:hover::before {
+      top: 0; }
+    }
 
 /* ----- TASK LIST ----- */
 /* The list that containers the user's tasks */
@@ -293,6 +390,82 @@ input {
 }
 /* ----- PANELS ----- */
 
+/* ----- FORMS & INPUT ----- */
+/* FORM CONTAINER */
+.formBody {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: white;
+    padding: 40px;
+    max-width: 400px;
+    margin: 10vh auto;
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* FORM HEADER */
+.formBody h2 {
+    font-size: 24px;
+    color: #0047AB;
+    margin-bottom: 20px;
+}
+
+/* RADIO GROUP */
+.radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+/* RADIO BUTTONS */
+.radio-group label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #0047AB;
+    padding: 10px;
+    border: 2px solid #0047AB;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+    background: white;
+}
+
+.radio-group input {
+    display: none;
+}
+
+.radio-group input:checked + label {
+    background: #0047AB;
+    color: white;
+    border-color: #FF4C00;
+}
+
+/* SUBMIT BUTTON */
+.formBody button {
+    background: #0047AB;
+    color: white;
+    padding: 12px;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.formBody button:hover {
+    background: #FF4C00;
+    box-shadow: 0px 4px 8px rgba(255, 76, 0, 0.4);
+}
+/* ----- FORMS & INPUT ----- */
 
 /* ----- RESPONSIVE DESIGN ----- */
 .menuButton {
@@ -313,5 +486,6 @@ display: none;
 .morebar{
     display: none;
 }
+
 }
 /* ----- RESPONSIVE DESIGN ----- */

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Home | Charlie Mark Crutcher</title>
-    <meta name="description" content="Charlie's programming portfolio homepage">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photography | Charlie Mark Crutcher</title>
+    <meta name="description" content="Charlie's photography page">
     <meta name="keywords" content="HTML,CSS,JavaScript,Python,Discord.py,Portfolio">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../static/css/styles.css">
@@ -18,7 +18,7 @@
         <ul>
             <li><a>Charlie Crutcher</a></li>
             <li class="hideOnMobile">
-                <a href="#" class = "active">HOME</a>
+                <a href="{{ url_for('index')}}">HOME</a>
             </li>
             <li class="hideOnMobile">
                 <a href="{{ url_for('cv')}}">CURRICULUM VITAE</a>
@@ -40,7 +40,7 @@
         <ul class="sidebar">
             <li onclick="hideSidebar()"><a style="cursor: pointer;"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#3C3D37"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></a></li>
             <li>
-                <a href="#" class="active">HOME</a>
+                <a href="{{ url_for('index')}}">HOME</a>
             </li>
             <li>
                 <a href="{{ url_for('cv')}}">CURRICULUM VITAE</a>
@@ -58,10 +58,7 @@
                 <a href="{{ url_for('gamedev')}}" class="lowerSideBar">GAME DEV</a>
             </li>
             <li>
-                <a href="{{ url_for('photography')}}" class="lowerSideBar">PHOTOGRAPHY</a>
-            </li>
-            <li>
-                <a href="{{ url_for('workouts') }}">GYM TRACKER</a>
+                <a href="{{ url_for('photography')}}">PHOTOGRAPHY</a>
             </li>
         </ul>
         <!-- ===== MOREBAR (MISC) ===== -->
@@ -72,26 +69,40 @@
             <li>
                 <a href="{{ url_for('photography')}}">PHOTOGRAPHY</a>
             </li>
-            <li>
-                <a href="{{ url_for('workouts') }}">GYM TRACKER</a>
-            </li>
         </ul>
     </nav>
-    <div class="panel" id="tasklist">
-        <h1>bundaaa</h1>
-    </div>
     <div class="myBody">
-        <h1>Homepage</h1>
+        <h1>Workout Tracker</h1>
         <hr>
         <p>
-            This is the home of my website.
+            This workout tracker was made to help track my progressive overload at
+            the gym! It is connected to a MySQL database so you can access previous
+            workouts!
         </p>
         <hr>
-        <!-- Navigation -->
-        <div class="menu">
-            <a class="menu__link" href="{{ url_for('photography')}}" data-hover="Slice">Slice</a>
-            <a class="menu__link" href="#fade" data-hover="Fade">Fade</a> 
+        <!-- User can select which muscle group they are training here! -->
+        <div class="formBody">
+            <form>
+                <div class="radio-group">
+                    <input type="radio" id="push" name="workout" value="push">
+                    <label for="push">Push Day</label>
+        
+                    <input type="radio" id="pull" name="workout" value="pull">
+                    <label for="pull">Pull Day</label>
+        
+                    <input type="radio" id="legs" name="workout" value="legs">
+                    <label for="legs">Leg Day</label>
+                </div>
+        
+                <button type="submit">Track Workout</button>
+            </form>
         </div>
+        <!-- Here is the previous workouts for the user to browse and compare! -->
+         <div>
+
+         </div>
+         <!-- Panels for Workouts -->
+         <div></div>
     </div>
     <script src="../static/js/scripts.js">Hello</script>
 </body>

@@ -43,5 +43,9 @@ def photography():
 def portfolio():
     return render_template("portfolio.html")
 
+@app.route("/workouts")
+def workouts():
+    return render_template("workouts.html")
+
 if __name__ == "__main__":
     app.run(host="localhost", debug=True)
