@@ -71,7 +71,18 @@
             </li>
         </ul>
     </nav>
-    <div class="myBody">
+
+    <!-- Panels -->
+    <div class="panel" id="pushPanel">
+        <div class="panel__content">
+            <a href="#home">
+                Close me.
+            </a>
+        </div>
+    </div>
+    <!-- Panels -->
+
+    <div class="myBody" id="home">
         <h1>Workout Tracker</h1>
         <hr>
         <p>
@@ -80,30 +91,21 @@
             workouts!
         </p>
         <hr>
+
         <!-- User can select which muscle group they are training here! -->
-        <div class="formBody">
-            <form>
-                <div class="radio-group">
-                    <input type="radio" id="push" name="workout" value="push">
-                    <label for="push">Push Day</label>
-        
-                    <input type="radio" id="pull" name="workout" value="pull">
-                    <label for="pull">Pull Day</label>
-        
-                    <input type="radio" id="legs" name="workout" value="legs">
-                    <label for="legs">Leg Day</label>
-                </div>
-        
-                <button type="submit">Track Workout</button>
-            </form>
+        <div class="menu">
+            <a class="menu__link" href="{{url_for('pushday')}}" data-hover="Push Day">Push</a>
+            <a class="menu__link" href="{{url_for('pullday')}}" data-hover="Pull Day">Pull</a> 
+            <a class="menu__link" href="{{url_for('legsday')}}" data-hover="Leg Day">Legs</a> 
         </div>
+
         <!-- Here is the previous workouts for the user to browse and compare! -->
          <div>
 
          </div>
-         <!-- Panels for Workouts -->
-         <div></div>
     </div>
+    <!-- Navigation -->
+
     <script src="../static/js/scripts.js">Hello</script>
 </body>
 </html>

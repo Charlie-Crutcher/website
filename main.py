@@ -8,7 +8,7 @@ app = Flask(__name__)
 mydb = mysql.connector.connect(
     host="localhost",
     user="root",
-    password="",
+    password="GotUser85",
     database="testdatabase"
 )
 
@@ -46,6 +46,18 @@ def portfolio():
 @app.route("/workouts")
 def workouts():
     return render_template("workouts.html")
+
+@app.route("/workouts-push")
+def pushday():
+    return render_template("workouts-push.html")
+
+@app.route("/workouts-pull")
+def pullday():
+    return render_template("workouts-pull.html")
+
+@app.route("/workouts-legs")
+def legsday():
+    return render_template("workouts-legs.html")
 
 if __name__ == "__main__":
     app.run(host="localhost", debug=True)
