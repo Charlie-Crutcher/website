@@ -12,7 +12,7 @@ mydb = mysql.connector.connect(
 mycursor = mydb.cursor()
 
 sql_insert = "INSERT INTO images (file_size, image_url) VALUES (%s, %s)" # SQL statement to insert records to DB.
-TARGET_CHANNEL_ID = "" # Channel ID goes here (please store as an integer.)
+TARGET_CHANNEL_ID =  # Channel ID goes here (please store as an integer.)
 
 # Global list vars to store image data
 image_sizes = []
@@ -73,7 +73,7 @@ class Client(discord.Client):
                 for reaction in message.reactions: # Loops through reactions on message.
                     if reaction.emoji == "☁️": # If message contains a cloud emoji.
                         async for user in reaction.users(): # Program pauses and continues once data is available, in this case (users).
-                            if user.id == "": # Checks if user ID is correct (STORE AS INTEGER!)
+                            if user.id == : # Checks if user ID is correct (STORE AS INTEGER!)
                                 image_urls.append(attachment.url)
                                 image_sizes.append(attachment.size)
         
