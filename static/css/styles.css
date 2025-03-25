@@ -5,6 +5,8 @@ html {
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
     font-family: "Anton", sans-serif;
 }
 /* ----- HTML SETTINGS ----- */
@@ -12,6 +14,7 @@ html {
 
 /* ----- BODY ----- */
 body {
+    font-kerning: none;
     background-color: white;
     background-size: cover;
     background-repeat: no-repeat;
@@ -23,8 +26,23 @@ body {
 .myBody {
     margin-top: 20vh;
     background-color: white;
+    display: block;
+    align-items: center;
+    width: 100%;
 }
+.workoutBody {
+    padding-top: 2.5vh;
+    padding-bottom: 2.5vh;
+    margin-left: 25vw;
+    margin-right: 25vw;
+    border-radius: 10px;
+    background-color: #0047AB;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+}
+/* ----- BODY ----- */
 
+
+/* ----- PHOTO ALBUM ----- */
 .photoAlbum {
     display: grid;
     background: #0047AB;
@@ -50,7 +68,7 @@ body {
     height: 100%;
     object-fit: cover;
 }
-/* ----- BODY ----- */
+/* ----- PHOTO ALBUM ----- */
 
 /* ----- HEADINGS & HR ----- */
 h1 {
@@ -93,14 +111,47 @@ h1 {
     
     } 
 h2 {
-    font-size: 56px;
-    font-weight: bold;
-    color: #2D2424;
-    letter-spacing: 5px;
-}
-#inverth2 {
-    margin-top: 10vh; 
-    color: #E0C097;
+    font-size: 1.875em; /* 30px */
+    margin-bottom: 24px;
+    width: auto;
+    color: #0047AB;
+    text-align: center;
+    }
+    /* Portrait and Landscape */
+    
+    @media only screen 
+    and (min-device-width: 240px) 
+    and (max-device-width: 480px)
+    and (-webkit-min-device-pixel-ratio: 2) {
+    h2 {
+    font-size: 1.5em; /* a little smaller*/
+    }
+    }
+    /* Portrait */
+    @media only screen 
+    and (min-device-width: 240px) 
+    and (max-device-width: 480px)
+    and (-webkit-min-device-pixel-ratio: 2)
+    and (orientation: portrait) {
+    h2 {
+    font-size: 1.25em; /* a little smaller*/
+    }
+    }
+    
+    /* Landscape */
+    @media only screen 
+    and (min-device-width: 320px) 
+    and (max-device-width: 480px)
+    and (-webkit-min-device-pixel-ratio: 2)
+    and (orientation: landscape) {
+    h2 {
+    font-size: 1em; /* a little smaller*/
+    }
+    
+    } 
+.workoutBody h2 {
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 hr {
     margin: 5vh 25vw 5vh;
@@ -171,6 +222,7 @@ nav a:hover {
 nav li:first-child {
     margin-right: auto;
 }
+
 a.active {
     color: #FF4C00;
 }
@@ -224,9 +276,11 @@ a.lowerSideBar:hover{
 /* ----- NAVIGATION ----- */
 
 
+
+/* ----- INTERACTIVE NAVIGATION ----- */
 /* Navigation menu */
 .menu {
-    position: fixed;
+    position: relative;
     width: 100vw;
     pointer-events: none;
     margin-top: 10vh;
@@ -247,7 +301,6 @@ a.lowerSideBar:hover{
     user-select: none;
     overflow: hidden;
     border-radius: 50px;
-
       &::before {
       content: attr(data-hover);
       background-color: #263238; 
@@ -258,168 +311,195 @@ a.lowerSideBar:hover{
       left: 0;
       transition: all 300ms cubic-bezier(0.190, 1.000, 0.560, 1.000);
       right: 0; }
-         
       &:hover::before {
       top: 0; }
 }
-/* ----- PANELS ----- */
-/* Common panel style */
-.panel {
-    display: none; /* Hide all panels by default */
-    position: fixed; /* Ensure panels cover the whole screen */
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(236, 239, 241, 0.95); /* Slight transparency */
-    z-index: 1000;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-/* Show the panel when targeted */
-.panel:target {
-    display: flex; /* Reveal the panel */
-}
-/* Panel content styling */
-.panel__content {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-    max-width: 400px;
-    width: 90%;
-    opacity: 0;
-    transition: opacity 0.5s ease-in-out;
-}
-/* Close button */
-.panel a {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 10px 20px;
-    background: #FF4C00;
-    color: white;
-    text-decoration: none;
-    border-radius: 8px;
-    transition: background 0.3s ease;
-}
-.panel a:hover {
-    background: #0047AB;
-}
-.panel#home {
-z-index: 1;
-background: radial-gradient(ellipse at center, rgba(255,255,255,1) 0%,#CFD8DC 100%); }
+/* ----- INTERACTIVE NAVIGATION ----- */
 
 
-/*  Specific panel "Slice" */
-/* •••••••••••••••••••••••••••••••• */
 
-.panel#slice {
-background-color: #E53935;
-transition: all 800ms cubic-bezier(0.190, 1.000, 0.560, 1.000);
-transform: translate3d( 0, -100%, 0 ); }
+/* ----- 10: WORKOUT TRACKER ----- */
+    /* -- 10.1: Tables -- */
+    table {
+        margin: auto;
+        padding: auto;
+        text-align: center;
+        align-content: center;
+    }
+    table, th, td {
+        border: 4px solid white;
+        padding: 15px;
+        border-radius: 10px;
+    }
+    .tableP {
+        font-size: 16px;
+        color: white;
+        font-family: "Anton", sans-serif;
+        font-style:normal;
+        font-weight: lighter;
+    }
 
-.panel#slice:target {
-transform: translate3d( 0, 0, 0 ); }
+    /* -- 10.2: Custom Dropdown (Select) -- */
+    .custom-select select {
+        transition: 0.3s;
+        appearance: none; /* Remove default browser styles */
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        border: 2px solid black; /* Cobalt Blue Border */
+        border-radius: 6px;
+        background-color: white;
+        color: #333;
+        cursor: pointer;
+        text-align: center;
+        font-family: "Anton", sans-serif;
+    }
+    .custom-select {
+        position: relative;
+        display: inline-block;
+        width: 100%;
+        transition: 0.3s;
+    }
+    .custom-select::after {
+        content: "▼"; /* Unicode for down arrow */
+        font-size: 14px;
+        color: #333;
+        position: absolute;
+        top: 50%;
+        right: 12px;
+        transform: translateY(-50%);
+        pointer-events: none;
+        transition: 0.3s;
+    }
+    /* Style select on hover & focus */
+    .custom-select select:hover, 
+    .custom-select select:focus {
+        border-color: #FF4C00; /* Orange */
+        box-shadow: 0 0 5px rgba(255, 76, 0, 0.5);
+        transition: 0.3s;
+    }
+    /* Style select options */
+    .custom-select select option {
+        font-family: "Anton", sans-serif;
+        cursor: pointer;
+        background: white;
+        color: #333;
+        padding: 10px;
+        border-color: #FF4C00; /* Orange */
+        box-shadow: 0 0 5px rgba(255, 76, 0, 0.5);
+    }
 
-/* ----- PANELS ----- */
+    /* -- 10.3: Custom Submit Button -- */
+    input[type="submit"] {
+        width: 100%;
+        padding: 10px 100px 10px 100px;
+        font-size: 16px;
+        background-color: white; /* Cobalt Blue */
+        color: #333;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+    /* Hover & Focus Effects */
+    input[type="submit"]:hover, 
+    input[type="submit"]:focus {
+        background-color: #FF4C00; /* Orange */
+        transform: scale(1.05);
+    }
+    /* Active (Click) Effect */
+    input[type="submit"]:active {
+        transform: scale(0.98);
+    }
 
-/* ----- FORMS & INPUT ----- */
-/* FORM CONTAINER */
-.formBody {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background: white;
-    padding: 40px;
-    max-width: 400px;
-    margin: 10vh auto;
-    border-radius: 12px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
 
-/* FORM HEADER */
-.formBody h2 {
-    font-size: 24px;
-    color: #0047AB;
-    margin-bottom: 20px;
-}
+    /* -- 10.4: Custom Number Input -- */
+    /* Hide arrows for Chrome, Safari, Edge, Opera */
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+    /* Hide arrows for Firefox */
+    input[type="number"] {
+        -moz-appearance: textfield;
+    }
+    input[type="number"] {
+        width: 100%; /* Make it fully responsive inside a table */
+        max-width: 80px; /* Prevent it from becoming too wide */
+        padding: 6px;
+        font-size: 14px;
+        border: 2px solid #0047AB; /* Your cobalt blue */
+        border-radius: 6px;
+        background-color: white;
+        color: #333;
+        text-align: center;
+        outline: none;
+        transition: 0.3s;
+    }
+    /* Add focus effect */
+    input[type="number"]:focus {
+        border-color: #FF4C00; /* Your orange */
+        box-shadow: 0 0 5px rgba(255, 76, 0, 0.5);
+    }
+    input[type="submit"] {
+        width: auto;
+    }
 
-/* RADIO GROUP */
-.radio-group {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    width: 100%;
-}
+/* ----- WORKOUT TRACKER ----- */
 
-/* RADIO BUTTONS */
-.radio-group label {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 18px;
-    font-weight: bold;
-    color: #0047AB;
-    padding: 10px;
-    border: 2px solid #0047AB;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: 0.3s ease-in-out;
-    background: white;
-}
 
-.radio-group input {
-    display: none;
-}
-
-.radio-group input:checked + label {
-    background: #0047AB;
-    color: white;
-    border-color: #FF4C00;
-}
-
-/* SUBMIT BUTTON */
-.formBody button {
-    background: #0047AB;
-    color: white;
-    padding: 12px;
-    font-size: 18px;
-    font-weight: bold;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: 0.3s ease;
-    width: 100%;
-    margin-top: 20px;
-}
-
-.formBody button:hover {
-    background: #FF4C00;
-    box-shadow: 0px 4px 8px rgba(255, 76, 0, 0.4);
-}
-/* ----- FORMS & INPUT ----- */
 
 /* ----- RESPONSIVE DESIGN ----- */
 .menuButton {
 display: none;
 }
-@media(max-width: 800px) {
-.hideOnMobile {
-    display: none;
-}
-.menuButton {
-    display: block;
-}
+@media(max-width: 768px) {
+    .hideOnMobile {
+        display: none;
+    }
+    .menuButton {
+        display: block;
+    }
+    input[type="number"] {
+        max-width: 60px; /* Make input smaller for better fit */
+        padding: 4px;
+        font-size: 12px;
+    }
+    .custom-select select {
+        font-size: 14px;
+        padding: 8px;
+    }
+    input[type="submit"] {
+        font-size: 14px;
+        padding: 10px 50px 10px 50px;
+    }
+    table, th, td {
+        border: 5px solid white;
+        padding: 5px;
+        border-radius: 10px;
+        margin: auto;
+    }
+    .workoutBody {
+        margin: auto;
+    }
+    
 }
 @media(max-width: 430px) {
-.sidebar{
-    width: 100%;
-}
-.morebar{
-    display: none;
+    .sidebar{
+        width: 100%;
+    }
+    .morebar{
+        display: none;
+    }
+    .tableP {
+        font-size: 0.8em;
+    }
+    select {
+        font-size: 0.8em;
+    }
 }
 
-}
 /* ----- RESPONSIVE DESIGN ----- */
