@@ -73,17 +73,28 @@
     </nav>
     <div class="myBody">
         <h1>Photography</h1>
-        <p></p>
-
-
+        <hr>
+        <p>
+            This is a bot I configured to fetch and store the URLs
+            of me and my friends photography images from Discord. I hope you enjoy!
+        </p>
+        <hr>
         <!-- Loop through images passed from the Flask route -->
-        <div class ="photoAlbum">
+        <div class ="hideOnMobile photoAlbum">
             {% for image_url in images %}
                 <div class="photoItem">
                     <img src="{{ image_url }}" alt="Image">
                 </div>
             {% endfor %}
         </div>
+        <div class="mobilePhotoAlbum">
+            {% for image_url in images %}
+                <div class="photoItem">
+                    <img src="{{ image_url }}" alt="Image">
+                </div>
+            {% endfor %}
+        </div>
+        <br>
     </div>
     <script src="../static/js/scripts.js">Hello</script>
 </body>

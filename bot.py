@@ -12,7 +12,11 @@ mydb = mysql.connector.connect(
 mycursor = mydb.cursor()
 
 sql_insert = "INSERT INTO images (file_size, image_url) VALUES (%s, %s)" # SQL statement to insert records to DB.
+<<<<<<< HEAD
+TARGET_CHANNEL_ID =  # Channel ID goes here (please store as an integer.)
+=======
 TARGET_CHANNEL_ID =  "" # Channel ID goes here (please store as an integer.)
+>>>>>>> 99b92db1939999c135e58f3769f05929f479d865
 
 # Global list vars to store image data
 image_sizes = []
@@ -24,7 +28,11 @@ class Client(discord.Client):
         self.auto_upload_to_db.start()
 
 
+<<<<<<< HEAD
+    @tasks.loop(minutes=30) # Runs every x minutes (adjust as needed)
+=======
     @tasks.loop(minutes=1) # Runs every x minutes (adjust as needed)
+>>>>>>> 99b92db1939999c135e58f3769f05929f479d865
     async def auto_upload_to_db(self):
         
         # Clear previous data on local list vars to avoid duplicates
@@ -68,12 +76,20 @@ class Client(discord.Client):
             print("Channel not found!")
             return
 
+<<<<<<< HEAD
+        async for message in channel.history(limit=100): # Fetches images from last 50 messages
+=======
         async for message in channel.history(limit=1000): # Fetches images from last 50 messages
+>>>>>>> 99b92db1939999c135e58f3769f05929f479d865
             for attachment in message.attachments: # Loops through messages with attachments.
                 for reaction in message.reactions: # Loops through reactions on message.
                     if reaction.emoji == "☁️": # If message contains a cloud emoji.
                         async for user in reaction.users(): # Program pauses and continues once data is available, in this case (users).
+<<<<<<< HEAD
+                            if user.id == : # Checks if user ID is correct (STORE AS INTEGER!)
+=======
                             if user.id == "": # Checks if user ID is correct (STORE AS INTEGER!)
+>>>>>>> 99b92db1939999c135e58f3769f05929f479d865
                                 image_urls.append(attachment.url)
                                 image_sizes.append(attachment.size)
         
