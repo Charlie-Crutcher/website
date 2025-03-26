@@ -69,9 +69,6 @@ navLinkEls.forEach(navLinkEl => {
     hideSidebarOnResize(y);
   });
 // ----- MISC DESKTOP DROPDOWN (MOREBAR) ----- // 
-
-
-
 // ----- WORKOUT FORM SUBMISSION ----- //
 document.addEventListener('DOMContentLoaded', function () {
   // Ensure the 'Add Another Exercise' button works
@@ -162,3 +159,4 @@ document.getElementById('workoutForm').addEventListener('submit', function(event
   .then(data => alert('Workout data uploaded successfully!'))
   .catch(error => alert('Error: ' + error));
 });
+
