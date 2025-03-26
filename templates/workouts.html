@@ -72,17 +72,8 @@
         </ul>
     </nav>
 
-    <!-- Panels -->
-    <div class="panel" id="pushPanel">
-        <div class="panel__content">
-            <a href="#home">
-                Close me.
-            </a>
-        </div>
-    </div>
-    <!-- Panels -->
-
     <div class="myBody" id="home">
+        <a href="{{url_for('workoutadmin')}}">admin panel</a>
         <h1>Workout Tracker</h1>
         <hr>
         <p>
@@ -101,6 +92,8 @@
 
         <!-- Here is the previous workouts for the user to browse and compare! -->
          <div>
+            <p>Entity Relationship Diagram for database that stores workout data.</p>
+            <img src="../static/images/ERD.png">
 
          </div>
     </div>

@@ -69,3 +69,96 @@ navLinkEls.forEach(navLinkEl => {
     hideSidebarOnResize(y);
   });
 // ----- MISC DESKTOP DROPDOWN (MOREBAR) ----- // 
+
+
+
+// ----- WORKOUT FORM SUBMISSION ----- //
+document.addEventListener('DOMContentLoaded', function () {
+  // Ensure the 'Add Another Exercise' button works
+  document.getElementById('addExercise').addEventListener('click', function() {
+      console.log("Add Exercise button clicked"); // Debugging step
+
+      // Find the exercise container
+      let exerciseContainer = document.getElementById('exerciseInputs');
+      if (!exerciseContainer) {
+          console.error("exerciseInputs div not found!");
+          return;
+      }
+
+      // Create a new exercise div
+      let newExercise = document.createElement('div');
+      newExercise.classList.add('exercise');
+
+      // Add the HTML for the new exercise inputs
+      newExercise.innerHTML = `
+          <label for="exerciseName">Exercise Name:</label>
+          <input type="text" name="exerciseName[]" required><br>
+          
+          <label for="set1_reps">Set 1 - Reps:</label>
+          <input type="number" name="set1_reps[]" required><br>
+          
+          <label for="set1_weight">Set 1 - Weight:</label>
+          <input type="number" name="set1_weight[]" required><br>
+
+          <label for="set2_reps">Set 2 - Reps:</label>
+          <input type="number" name="set2_reps[]" required><br>
+          
+          <label for="set2_weight">Set 2 - Weight:</label>
+          <input type="number" name="set2_weight[]" required><br>
+
+          <label for="set3_reps">Set 3 - Reps:</label>
+          <input type="number" name="set3_reps[]" required><br>
+          
+          <label for="set3_weight">Set 3 - Weight:</label>
+          <input type="number" name="set3_weight[]" required><br>
+      `;
+
+      // Append the new exercise div to the container
+      exerciseContainer.appendChild(newExercise);
+  });
+});
+
+
+
+
+// -- SUBMIT FORM -- //
+document.getElementById('workoutForm').addEventListener('submit', function(event) {
+  event.preventDefault();
+
+  let workoutDay = document.getElementById('workoutDay').value;
+  let exerciseNames = document.querySelectorAll('[name="exerciseName[]"]');
+  let set1Reps = document.querySelectorAll('[name="set1_reps[]"]');
+  let set1Weights = document.querySelectorAll('[name="set1_weight[]"]');
+  let set2Reps = document.querySelectorAll('[name="set2_reps[]"]');
+  let set2Weights = document.querySelectorAll('[name="set2_weight[]"]');
+  let set3Reps = document.querySelectorAll('[name="set3_reps[]"]');
+  let set3Weights = document.querySelectorAll('[name="set3_weight[]"]');
+
+  let exercises = [];
+  for (let i = 0; i < exerciseNames.length; i++) {
+    exercises.push({
+      name: exerciseNames[i].value,
+      sets: [
+        { set_number: 1, reps: set1Reps[i].value, weight: set1Weights[i].value },
+        { set_number: 2, reps: set2Reps[i].value, weight: set2Weights[i].value },
+        { set_number: 3, reps: set3Reps[i].value, weight: set3Weights[i].value }
+      ]
+    });
+  }
+
+  let data = {
+    workoutDay: workoutDay,
+    exercises: exercises
+  };
+
+  fetch('/upload_workout', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data)
+  })
+  .then(response => response.json())
+  .then(data => alert('Workout data uploaded successfully!'))
+  .catch(error => alert('Error: ' + error));
+});
