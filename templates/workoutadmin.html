@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>Add exercise</p>
+    <form method='POST' action="/add_exercise">
+        <label for="exercise">Exercise name:</label><br>
+        <input type="text" id="exercise" name="exercise"><br>
+        <input type="submit" value="Submit">
+    </form>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Exercise ID</th>
+                <th>Name</th>
+                <!-- Add more columns as per your data -->
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in data %}
+            <tr>
+                <td>{{ row['exercise_id'] }}</td>
+                <td>{{ row['exercise_name'] }}</td>
+                <!-- Add more table data cells for additional columns if needed -->
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log Workout</title>
+    <link rel="stylesheet" href="../static/css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+</head>
+<body>
+    <h1>Log Your Workout</h1>
+    
+    {% if message %}
+        <p>{{ message }}</p>
+    {% endif %}
+
+    <table>
+        <tr>
+            <th>
+                <select name="exercise_id" id="exercise_id" required>
+                    {% for exercise in exercises %}
+                        <option value="{{ exercise[0] }}">{{ exercise[1] }}</option>  <!-- Assuming the second column is exercise_name -->
+                    {% endfor %}
+                </select>
+            </th>
+            <th>Set 1</th>
+            <th>Set 2</th>
+            <th>Set 3</th>
+        </tr>
+        <tr>
+            <td>Weight (kg)</td>            
+        </tr>
+        <tr>
+            <td>Reps</td>
+        </tr>
+    <form method="POST">
+        <select name="exercise_id" id="exercise_id" required>
+            {% for exercise in exercises %}
+                <option value="{{ exercise[0] }}">{{ exercise[1] }}</option>  <!-- Assuming the second column is exercise_name -->
+            {% endfor %}
+        </select>
+        <br>
+        
+        <label for="weight">Weight (kg):</label>
+        <input type="number" name="weight" id="weight" step="0.1" required>
+        <br>
+        
+        <label for="reps">Reps:</label>
+        <input type="number" name="reps" id="reps" required>
+        <br>
+        
+        <button type="submit">Log Workout</button>
+    </form>
+</table>
+</body>
+</html>
