@@ -328,6 +328,7 @@ a.lowerSideBar:hover{
     }
     table, th, td {
         border: 4px solid black;
+
         padding: 15px;
         border-radius: 10px;
     }
