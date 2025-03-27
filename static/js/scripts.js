@@ -6,8 +6,75 @@ navLinkEls.forEach(navLinkEl => {
     navLinkEl.classList.add('active');
   })
 })
-// ----- ACTIVE CLASS : NAVIGATION BAR ----- //
-  
+// ----- END ----- //
+
+
+// ----- DARK MODE / LIGHT MODE TOGGLE ----- //
+let darkmode = localStorage.getItem('darkmode');
+const themeSwitch = document.getElementById('theme-switch');
+
+const enableDarkmode = () => {
+  document.body.classList.add('darkmode');
+  localStorage.setItem('darkmode', 'active');
+};
+
+const disableDarkmode = () => {
+  document.body.classList.remove('darkmode');
+  localStorage.setItem('darkmode', 'null');
+};
+
+// Toggle dark mode based on current state
+themeSwitch.addEventListener('click', () => {
+  darkmode = localStorage.getItem('darkmode');
+  if (darkmode !== 'active') {
+    enableDarkmode();
+  } else {
+    disableDarkmode();
+  }
+});
+
+// Apply the theme on page load based on localStorage value
+if (darkmode === 'active') {
+  enableDarkmode();
+}
+
+// MODAL
+// Get the modal
+let modal = document.getElementById("myModal");
+
+// Get the image and insert it inside the modal
+let modalImg = document.getElementsByClassName("modal-content")[0];
+
+// Get all the images in the gallery
+let images = document.querySelectorAll(".photoItem img");
+
+// Loop through all images
+images.forEach(image => {
+    image.addEventListener("click", function() {
+        // Set the modal content to the clicked image
+        modalImg.src = this.src;
+        
+        // Show the modal
+        modal.style.display = "block";
+    });
+});
+
+// Get the <span> element that closes the modal
+let span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+// Close the modal if the user clicks anywhere outside the image
+modal.onclick = function(event) {
+    // Check if the click is on the modal background, not on the image
+    if (event.target === modal) {
+        modal.style.display = "none";
+    }
+}
+// MODAL
 
 
 // ----- MISC DESKTOP DROPDOWN (MOREBAR) ----- // 
