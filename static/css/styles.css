@@ -367,7 +367,6 @@ a.lowerSideBar:hover{
         align-content: center;
     }
     table, th, td {
-        border: 4px solid var(--text-color);
         padding: 15px;
         border-radius: 10px;
     }
