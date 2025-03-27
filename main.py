@@ -8,7 +8,7 @@ app = Flask(__name__)
 mydb = mysql.connector.connect(
     host="localhost",
     user="root",
-    password="",
+    password="GotUser85",
     database="testdatabase"
 )
 
@@ -105,20 +105,26 @@ def legsday():
 @app.route("/log_workout", methods=['GET', 'POST'])
 def log_workout():
     if request.method == 'POST':
-        exercise_id = request.form['exercise_id']
-        weight = request.form['weight']
-        reps = request.form['reps']
+        f_workout_id = request.form['workout_id']
+        f_exercise_id = request.form['exercise_id']
+        set_1_weight = request.form['set_1_weight']
+        set_2_weight = request.form['set_2_weight']
+        set_3_weight = request.form['set_3_weight']
+        set_1_reps = request.form['set_1_reps']
+        set_2_reps = request.form['set_2_reps']
+        set_3_reps = request.form['set_3_reps']
         
         # Assuming you have a user_id (you may want to associate users to a session or a login system)
-        user_id = 1  # Placeholder for logged-in user ID
         
         # Insert workout log into database
         mycursor = mydb.cursor()
         sql_insert_log = """
-        INSERT INTO workout_log (user_id, exercise_id, weight, reps)
-        VALUES (%s, %s, %s, %s)
+        INSERT INTO workout_exercise (f_workout_id, f_exercise_id, set_1_weight, set_2_weight, set_3_weight,
+                                        set_1_reps, set_2_reps, set_3_reps)
+        VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
         """
-        mycursor.execute(sql_insert_log, (user_id, exercise_id, weight, reps))
+        mycursor.execute(sql_insert_log, (f_workout_id, f_exercise_id, set_1_weight, set_2_weight, set_3_weight,
+                                        set_1_reps, set_2_reps, set_3_reps))
         mydb.commit()
         
         return render_template('log_workout.html', message="Workout logged successfully!")

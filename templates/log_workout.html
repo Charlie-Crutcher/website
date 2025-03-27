@@ -8,6 +8,17 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+    <!-- Dark mode immediately applied on page load -->
+    <style>
+        body {
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+        /* If dark mode is enabled, force the class to be added right away */
+        .darkmode {
+            background-color: #070b1d;
+            color: white;
+        }
+    </style>
 </head>
 <body>
     <h1>Log Your Workout</h1>
@@ -16,43 +27,78 @@
         <p>{{ message }}</p>
     {% endif %}
 
-    <table>
-        <tr>
-            <th>
-                <select name="exercise_id" id="exercise_id" required>
-                    {% for exercise in exercises %}
-                        <option value="{{ exercise[0] }}">{{ exercise[1] }}</option>  <!-- Assuming the second column is exercise_name -->
-                    {% endfor %}
-                </select>
-            </th>
-            <th>Set 1</th>
-            <th>Set 2</th>
-            <th>Set 3</th>
-        </tr>
-        <tr>
-            <td>Weight (kg)</td>            
-        </tr>
-        <tr>
-            <td>Reps</td>
-        </tr>
-    <form method="POST">
-        <select name="exercise_id" id="exercise_id" required>
-            {% for exercise in exercises %}
-                <option value="{{ exercise[0] }}">{{ exercise[1] }}</option>  <!-- Assuming the second column is exercise_name -->
-            {% endfor %}
-        </select>
-        <br>
-        
-        <label for="weight">Weight (kg):</label>
-        <input type="number" name="weight" id="weight" step="0.1" required>
-        <br>
-        
-        <label for="reps">Reps:</label>
-        <input type="number" name="reps" id="reps" required>
-        <br>
-        
-        <button type="submit">Log Workout</button>
-    </form>
-</table>
+    <!-- This is the WORKOUT table -->
+     <div class="workoutBody">
+        <form>
+            <table>
+                <tr>
+                    <th>Workout ID AUTO</th>
+                    <th>User ID AUTO</th>
+                </tr>
+                <tr>
+                    <th>Workout Date</th>
+                    <td><input type="date"></td>
+                </tr>
+                <tr>
+                    <th>Workout Type</th>
+                    <td><select>
+                        <option>Push</option>
+                        <option>Pull</option>
+                        <option>Legs</option>
+                    </select>
+                </td>
+                </tr>
+                <tr>
+                    <td>
+                        workout notes
+                    </td>
+                    <td>
+                        <input type="text">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="100"><button type="submit">Create Workout</button></td>
+                </tr>
+            </table>
+
+        </form>
+    </div>
+    <br>
+
+
+    <!-- This is each EXERCISE table -->
+     <div class="workoutBody">
+        <form method='POST' action="{{ url_for('log_workout') }}">
+            <table>
+                <tr>
+                    <th>
+                        <select name="exercise_id" id="exercise_id" required>
+                            {% for exercise in exercises %}
+                                <option value="{{ exercise[0] }}">{{ exercise[1] }}</option>  <!-- Assuming the second column is exercise_name -->
+                            {% endfor %}
+                        </select>
+                    </th>
+                    <th>Set 1</th>
+                    <th>Set 2</th>
+                    <th>Set 3</th>
+                </tr>
+                <tr>
+                    <td>Weight (kg)</td>    
+                    <td><input type="number" name="set_1_weight" id="set_1_weight" step="0.1" required></td>       
+                    <td><input type="number" name="set_2_weight" id="set_2_weight" step="0.1" required></td>   
+                    <td><input type="number" name="set_3_weight" id="set_3_weight" step="0.1" required></td>    
+                </tr>
+                <tr>
+                    <td>Reps</td>
+                    <td><input type="number" name="set_1_reps" id="set_1_reps" step="0.1" required></td>   
+                    <td><input type="number" name="set_2_reps" id="set_2_reps" step="0.1" required></td>   
+                    <td><input type="number" name="set_3_reps" id="set_3_reps" step="0.1" required></td>   
+                </tr>        
+                <tr>
+                    <td colspan="100"><button type="submit">Log Workout</button></td>
+                </tr>
+            </table>
+        </form>
+    </div>
 </body>
 </html>
