@@ -28,53 +28,47 @@
     {% endif %}
 
     <!-- This is the WORKOUT table -->
-     <div class="workoutBody">
-        <form>
+    <div class="workoutBody">
+        <form method="POST" action="{{ url_for('log_workout') }}">
             <table>
                 <tr>
-                    <th>Workout ID AUTO</th>
-                    <th>User ID AUTO</th>
+                    <th>Workout ID (Auto)</th>
+                    <th>User ID (Auto)</th>
                 </tr>
                 <tr>
                     <th>Workout Date</th>
-                    <td><input type="date"></td>
+                    <td><input type="date" name="workout_date" id="workout_date" required></td>
                 </tr>
                 <tr>
                     <th>Workout Type</th>
-                    <td><select>
-                        <option>Push</option>
-                        <option>Pull</option>
-                        <option>Legs</option>
-                    </select>
-                </td>
-                </tr>
-                <tr>
                     <td>
-                        workout notes
-                    </td>
-                    <td>
-                        <input type="text">
+                        <select name="workout_type" id="workout_type" required>
+                            <option value="Push">Push</option>
+                            <option value="Pull">Pull</option>
+                            <option value="Legs">Legs</option>
+                        </select>
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="100"><button type="submit">Create Workout</button></td>
+                    <th>Workout Notes</th>
+                    <td>
+                        <input type="text" name="workout_notes" id="workout_notes">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2"><button type="submit">Create Workout</button></td>
                 </tr>
             </table>
-
         </form>
     </div>
-    <br>
-
-
-    <!-- This is each EXERCISE table -->
      <div class="workoutBody">
-        <form method='POST' action="{{ url_for('log_workout') }}">
+        <!-- <form method='POST' action="{{ url_for('log_workout') }}">
             <table>
                 <tr>
                     <th>
                         <select name="exercise_id" id="exercise_id" required>
                             {% for exercise in exercises %}
-                                <option value="{{ exercise[0] }}">{{ exercise[1] }}</option>  <!-- Assuming the second column is exercise_name -->
+                                <option value="{{ exercise[0] }}">{{ exercise[1] }}</option>  Assuming the second column is exercise_name -->
                             {% endfor %}
                         </select>
                     </th>
@@ -100,5 +94,6 @@
             </table>
         </form>
     </div>
+    <br>
 </body>
 </html>

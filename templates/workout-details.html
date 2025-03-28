@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Workout Details</h1>
+    {% for row in latest_record %}
+    <table>
+        <tr>
+            <td>{{ row['workout_id'] }}</td>
+            <!-- <td>{{ row['workout_type'] }}</td>
+            <td>{{ row['workout_date'] }}</td> -->
+            <!-- Add more table data cells for additional columns if needed -->
+        </tr>
+    </table>  
+    {% endfor %}
+</body>
+</html>

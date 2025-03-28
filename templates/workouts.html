@@ -105,7 +105,6 @@
     </nav>
 
     <div class="myBody" id="home">
-        <a href="{{url_for('workoutadmin')}}">admin panel</a>
         <h1>Workout Tracker</h1>
         <hr>
         <p>
@@ -117,9 +116,10 @@
 
         <!-- User can select which muscle group they are training here! -->
         <div class="menu">
-            <a class="menu__link" href="{{url_for('pushday')}}" data-hover="Push Day">Push</a>
+            <a class="menu__link" href="{{url_for('log_workout')}}" data-hover="Push Day">Push</a>
             <a class="menu__link" href="{{url_for('pullday')}}" data-hover="Pull Day">Pull</a> 
             <a class="menu__link" href="{{url_for('legsday')}}" data-hover="Leg Day">Legs</a> 
+            <a class="menu__link" href="{{url_for('workoutadmin')}}" data-hover="Admin Panel">Admin</a>
         </div>
 
         <!-- Here is the previous workouts for the user to browse and compare! -->
