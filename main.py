@@ -112,8 +112,41 @@ def workout_create():
 
 
 # ----- Workout App : Log Exercises ----- #
-@app.route("/workout-exercises")
+@app.route("/workout-exercises", methods=['GET', 'POST'])
 def workout_exercises():
+    if request.method == 'POST':
+        f_workout_id = 1
+        print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+        print(request.form['exercise_selection'])
+        f_exercise_id = request.form['exercise_selection']
+        set_1_weight = request.form['set_1_weight']
+        set_2_weight = request.form['set_2_weight']
+        set_3_weight = request.form['set_3_weight']
+        set_1_reps = request.form['set_1_reps']
+        set_2_reps = request.form['set_2_reps']
+        set_3_reps = request.form['set_3_reps']
+        
+        # Assuming you have a user_id (you may w
+        # ant to associate users to a session or a login system)
+        
+        # Insert workout log into database
+        mycursor = mydb.cursor()
+        sql_insert_log = """
+        INSERT INTO workout_exercise (f_workout_id, f_exercise_id,
+        set_1_weight, set_1_reps, 
+        set_2_weight, set_2_reps, 
+        set_3_weight, set_3_reps)
+        VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+        """
+        mycursor.execute(sql_insert_log, (f_workout_id, f_exercise_id,
+                                          set_1_weight, set_1_reps, 
+                                          set_2_weight, set_2_reps, 
+                                          set_3_weight, set_3_reps))
+        mydb.commit()
+        
+        return redirect(url_for("workout_exercises"))  # Change this to the desired page
+        
+        
     with mydb.cursor(dictionary=True) as mycursor:
         mycursor.execute("SELECT * FROM exercise")
         exercise = mycursor.fetchall()

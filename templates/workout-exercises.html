@@ -99,35 +99,62 @@
         <!-- Displays current workout from 'workout' table -->
          <div class="workoutBody">
             {% for row in data %}
-            <table>
-                <tr>
-                    <th>Workout ID</th>
-                    <th>Split</th>
-                    <th>Date</th>
-                </tr>
-                <tr>
-                    <td>{{ row['workout_id'] }}</td>
-                    <td>{{ row['workout_type'] }}</td>
-                    <td>{{ row['workout_date'] }}</td>
-                    <!-- Add more table data cells for additional columns if needed -->
-                </tr>
-            </table>  
-            <!-- {% endfor %} -->
+            <form method="POST">
+                <table>
+                    <tr>
+                        <th>Workout ID</th>
+                        <th>Split</th>
+                        <th>Date</th>
+                    </tr>
+                    <tr>
+                        <td>{{ row['workout_id'] }}</td>
+                        <td>{{ row['workout_type'] }}</td>
+                        <td>{{ row['workout_date'] }}</td>
+                        <!-- Add more table data cells for additional columns if needed -->
+                    </tr>
+                </table>  
+            </form>
+            {% endfor %}
         </div>
         <h1>Log Your Exercises</h1>
         <div class="workoutBody">
-            {% for row in exercise_name %} 
-            <table>
-                <tr>
-                    <td>Exercise Name</td>
-                </tr>
-                <tr>
-                    <td></td>                      
-                </tr>
-            </table>
-            {% endfor %}
+            <h2>Exercise 1</h2>
+            <form method="POST" action="#">
+                <table>
+                    <tr>
+                        <td>
+                            <select name="exercise_selection" id="exercise_selection">
+                                {% for row in exercise %}
+                                <option value="{{ row['exercise_id'] }}">{{ row['exercise_name'] }}</option>
+                                {% endfor %}
+                            </select>
+                        </td>
+                        <th>Set 1</th>
+                        <th>Set 2</th>
+                        <th>Set 3</th>
+                    </tr>
+                    <tr>
+                        <th>Weight</th>
+                        <td><input type="number" name="set_1_weight" id="set_1_weight"></td>  
+                        <td><input type="number" name="set_2_weight" id="set_2_weight"></td>   
+                        <td><input type="number" name="set_3_weight" id="set_3_weight"></td>                 
+                    </tr>
+                    <tr>
+                        <th>Reps</th>
+                        <td><input type="number" name="set_1_reps" id="set_1_reps"></td>   
+                        <td><input type="number" name="set_2_reps" id="set_2_reps"></td>   
+                        <td><input type="number" name="set_3_reps" id="set_3_reps"></td>   
+                    </tr>
+                    <tr>
+                        <td colspan="100">
+                            <input type="submit">
+                        </td>
+                    </tr>
+                </table>
+            </form>
         </div>
     </div>
+    <script src="../static/js/scripts.js"></script>
 
 
 </body>
