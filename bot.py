@@ -14,7 +14,6 @@ mycursor = mydb.cursor()
 sql_insert = "INSERT INTO images (file_size, image_url) VALUES (%s, %s)" # SQL statement to insert records to DB.
 TARGET_CHANNEL_ID =  # Channel ID goes here (please store as an integer.)
 
-
 # Global list vars to store image data
 image_sizes = []
 image_urls = []
@@ -26,6 +25,8 @@ class Client(discord.Client):
 
 
     @tasks.loop(minutes=30) # Runs every x minutes (adjust as needed)
+        # await self.refresh_images() # Run if images need refreshing!
+        # TODO - Get an admin panel to access this from the website instead of hardcoding it each time! #
     async def auto_upload_to_db(self):
         
         # Clear previous data on local list vars to avoid duplicates
@@ -69,14 +70,25 @@ class Client(discord.Client):
             print("Channel not found!")
             return
 
-        async for message in channel.history(limit=1000): # Fetches images from last 50 messages
+        async for message in channel.history(limit=100): # Fetches images from last 50 messages
             for attachment in message.attachments: # Loops through messages with attachments.
                 for reaction in message.reactions: # Loops through reactions on message.
                     if reaction.emoji == "☁️": # If message contains a cloud emoji.
                         async for user in reaction.users(): # Program pauses and continues once data is available, in this case (users).
-                            if user.id == "": # Checks if user ID is correct (STORE AS INTEGER!)
+                            if user.id == : # Checks if user ID is correct (STORE AS INTEGER!)
                                 image_urls.append(attachment.url)
                                 image_sizes.append(attachment.size)
+                         
+                                
+    async def refresh_images(self):
+        channel = self.get_channel(TARGET_CHANNEL_ID)     
+        if not channel:
+            print("Channel not found!")
+            return
+
+        sql = "DELETE FROM images" # !!! Deletes all images stored in 'images' database !!! #
+        mycursor.execute(sql)
+        mydb.commit()
         
              
 intents = discord.Intents.default()

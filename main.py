@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, redirect, url_for, flash, session
 import mysql.connector
 
 app = Flask(__name__)
@@ -8,7 +8,7 @@ app = Flask(__name__)
 mydb = mysql.connector.connect(
     host="localhost",
     user="root",
-    password="",
+    password="GotUser85",
     database="testdatabase"
 )
 
@@ -51,7 +51,8 @@ def portfolio():
 def workoutadmin():
     return render_template("workoutadmin.html")
 
-# ----- Workout App : Fetch All Page ----- #
+
+# ----- Workout App ADMIN : Fetch All Page ----- #
 @app.route('/fetchall', methods=['GET'])
 def fetch_all():
     mycursor = mydb.cursor(dictionary=True)
@@ -65,7 +66,7 @@ def fetch_all():
     return render_template('workoutadmin.html', data=data)
 
 
-# ----- Workout App : Add Exercise Page ----- #
+# ----- Workout App ADMIN : Add Exercise Page ----- #
 @app.route('/add_exercise', methods=['GET', 'POST'])
 def add_user():
     print("lol")
@@ -84,52 +85,92 @@ def workouts():
     return render_template("workouts.html")
 
 
-# ----- Workout App : Push Day ----- #
-@app.route("/workouts-push")
-def pushday():
-    return render_template("workouts-push.html")
-
-
-# ----- Workout App : Pull Day ----- #
-@app.route("/workouts-pull")
-def pullday():
-    return render_template("workouts-pull.html")
-
-
-# ----- Workout App : Leg Day ----- #
-@app.route("/workouts-legs")
-def legsday():
-    return render_template("workouts-legs.html")
-
-
-@app.route("/log_workout", methods=['GET', 'POST'])
-def log_workout():
+# ----- Workout App : Create Workout ----- #
+@app.route("/workout-create", methods=['GET', 'POST'])
+def workout_create():
     if request.method == 'POST':
-        exercise_id = request.form['exercise_id']
-        weight = request.form['weight']
-        reps = request.form['reps']
+        workout_date = request.form['workout_date']
+        workout_type = request.form['workout_type']
+        workout_notes = request.form['workout_notes']
+        f_user_id = 1
         
-        # Assuming you have a user_id (you may want to associate users to a session or a login system)
-        user_id = 1  # Placeholder for logged-in user ID
+        # Assuming you have a user_id (you may w
+        # ant to associate users to a session or a login system)
         
         # Insert workout log into database
         mycursor = mydb.cursor()
         sql_insert_log = """
-        INSERT INTO workout_log (user_id, exercise_id, weight, reps)
+        INSERT INTO workout (f_user_id, workout_date, workout_type, workout_notes)
         VALUES (%s, %s, %s, %s)
         """
-        mycursor.execute(sql_insert_log, (user_id, exercise_id, weight, reps))
+        mycursor.execute(sql_insert_log, (f_user_id, workout_date, workout_type, workout_notes))
         mydb.commit()
         
-        return render_template('log_workout.html', message="Workout logged successfully!")
-    
-    # Get all exercises for the user to choose from
-    mycursor = mydb.cursor()
-    mycursor.execute("SELECT * FROM exercise")
-    exercises = mycursor.fetchall()
-    
-    return render_template("log_workout.html", exercises=exercises)
+        return redirect(url_for("workout_exercises"))  # Change this to the desired page
+        
+    return render_template("workout-create.html")
 
+
+# ----- Workout App : Log Exercises ----- #
+@app.route("/workout-exercises", methods=['GET', 'POST'])
+def workout_exercises():
+    if request.method == 'POST':
+        f_workout_id = 1
+        print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+        print(request.form['exercise_selection'])
+        f_exercise_id = request.form['exercise_selection']
+        set_1_weight = request.form['set_1_weight']
+        set_2_weight = request.form['set_2_weight']
+        set_3_weight = request.form['set_3_weight']
+        set_1_reps = request.form['set_1_reps']
+        set_2_reps = request.form['set_2_reps']
+        set_3_reps = request.form['set_3_reps']
+        
+        # Assuming you have a user_id (you may w
+        # ant to associate users to a session or a login system)
+        
+        # Insert workout log into database
+        mycursor = mydb.cursor()
+        sql_insert_log = """
+        INSERT INTO workout_exercise (f_workout_id, f_exercise_id,
+        set_1_weight, set_1_reps, 
+        set_2_weight, set_2_reps, 
+        set_3_weight, set_3_reps)
+        VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+        """
+        mycursor.execute(sql_insert_log, (f_workout_id, f_exercise_id,
+                                          set_1_weight, set_1_reps, 
+                                          set_2_weight, set_2_reps, 
+                                          set_3_weight, set_3_reps))
+        mydb.commit()
+        
+        return redirect(url_for("workout_exercises"))  # Change this to the desired page
+        
+        
+    with mydb.cursor(dictionary=True) as mycursor:
+        mycursor.execute("SELECT * FROM exercise")
+        exercise = mycursor.fetchall()
+        
+    with mydb.cursor(dictionary=True) as mycursor:
+        mycursor.execute("SELECT * FROM workout WHERE f_user_id = 1 ORDER BY workout_id DESC LIMIT 1")
+        data = mycursor.fetchall()  # Fetch the latest workout
+
+        if data:
+            return render_template("workout-exercises.html", data=data, exercise=exercise)
+        else:
+            return "No workouts found."
+
+
+@app.route("/workout-details")
+def workout_details():
+    with mydb.cursor(dictionary=True) as mycursor:
+        mycursor.execute("SELECT * FROM workout WHERE f_user_id = %s ORDER BY workout_id DESC LIMIT 1")
+        latest_record = mycursor.fetchone()  # Fetch the latest workout
+
+    if latest_record:
+        return render_template("workout-details.html", latest_record=latest_record)
+    else:
+        return "No workouts found."
 
 if __name__ == "__main__":
     app.run(host="localhost", debug=True)
