@@ -86,7 +86,7 @@ def workouts():
 
 
 # ----- Workout App : Create Workout ----- #
-@app.route("/workout_create", methods=['GET', 'POST'])
+@app.route("/workout-create", methods=['GET', 'POST'])
 def workout_create():
     if request.method == 'POST':
         workout_date = request.form['workout_date']
@@ -106,14 +106,26 @@ def workout_create():
         mycursor.execute(sql_insert_log, (f_user_id, workout_date, workout_type, workout_notes))
         mydb.commit()
         
-        return redirect(url_for("workout_details"))  # Change this to the desired page
-    
-    # Get all exercises for the user to choose from
-    mycursor = mydb.cursor()
-    mycursor.execute("SELECT * FROM exercise")
-    exercises = mycursor.fetchall()
-    
-    return render_template("workout-details.html", exercises=exercises)
+        return redirect(url_for("workout_exercises"))  # Change this to the desired page
+        
+    return render_template("workout-create.html")
+
+
+# ----- Workout App : Log Exercises ----- #
+@app.route("/workout-exercises")
+def workout_exercises():
+    with mydb.cursor(dictionary=True) as mycursor:
+        mycursor.execute("SELECT * FROM exercise")
+        exercise = mycursor.fetchall()
+        
+    with mydb.cursor(dictionary=True) as mycursor:
+        mycursor.execute("SELECT * FROM workout WHERE f_user_id = 1 ORDER BY workout_id DESC LIMIT 1")
+        data = mycursor.fetchall()  # Fetch the latest workout
+
+        if data:
+            return render_template("workout-exercises.html", data=data, exercise=exercise)
+        else:
+            return "No workouts found."
 
 
 @app.route("/workout-details")
