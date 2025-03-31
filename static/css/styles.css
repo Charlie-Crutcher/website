@@ -28,7 +28,7 @@
     padding: 0;
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
-    font-family: "Anton", sans-serif;
+    font-family: "Oswald", sans-serif;
 }
 /* ----- HTML SETTINGS ----- */
 
@@ -129,6 +129,8 @@ h1 {
     width: auto;
     color: var(--text-color);
     text-align: center;
+    font-family: "Anton";
+    font-weight: lighter;
     }
     /* Portrait and Landscape */
     

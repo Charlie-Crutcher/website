@@ -51,7 +51,8 @@ def portfolio():
 def workoutadmin():
     return render_template("workoutadmin.html")
 
-# ----- Workout App : Fetch All Page ----- #
+
+# ----- Workout App ADMIN : Fetch All Page ----- #
 @app.route('/fetchall', methods=['GET'])
 def fetch_all():
     mycursor = mydb.cursor(dictionary=True)
@@ -65,7 +66,7 @@ def fetch_all():
     return render_template('workoutadmin.html', data=data)
 
 
-# ----- Workout App : Add Exercise Page ----- #
+# ----- Workout App ADMIN : Add Exercise Page ----- #
 @app.route('/add_exercise', methods=['GET', 'POST'])
 def add_user():
     print("lol")
@@ -84,34 +85,17 @@ def workouts():
     return render_template("workouts.html")
 
 
-# ----- Workout App : Push Day ----- #
-@app.route("/workouts-push")
-def pushday():
-    return render_template("workouts-push.html")
-
-
-# ----- Workout App : Pull Day ----- #
-@app.route("/workouts-pull")
-def pullday():
-    return render_template("workouts-pull.html")
-
-
-# ----- Workout App : Leg Day ----- #
-@app.route("/workouts-legs")
-def legsday():
-    return render_template("workouts-legs.html")
-
-
-# ----- Workout App : Log Workout ----- #
-@app.route("/log_workout", methods=['GET', 'POST'])
-def log_workout():
+# ----- Workout App : Create Workout ----- #
+@app.route("/workout_create", methods=['GET', 'POST'])
+def workout_create():
     if request.method == 'POST':
         workout_date = request.form['workout_date']
         workout_type = request.form['workout_type']
         workout_notes = request.form['workout_notes']
         f_user_id = 1
         
-        # Assuming you have a user_id (you may want to associate users to a session or a login system)
+        # Assuming you have a user_id (you may w
+        # ant to associate users to a session or a login system)
         
         # Insert workout log into database
         mycursor = mydb.cursor()
@@ -129,7 +113,8 @@ def log_workout():
     mycursor.execute("SELECT * FROM exercise")
     exercises = mycursor.fetchall()
     
-    return render_template("log_workout.html", exercises=exercises)
+    return render_template("workout-details.html", exercises=exercises)
+
 
 @app.route("/workout-details")
 def workout_details():

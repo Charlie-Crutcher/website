@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log Workout</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/styles.css">
+    <style>
+        body {
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+        /* If dark mode is enabled, force the class to be added right away */
+        .darkmode {
+            background-color: #070b1d;
+            color: white;
+        }
+    </style>
+</head>
+
+
+<body>
+    <div class="myBody">
+        <h1>Log Your Workout</h1>
+        <!-- This form creates a new row for workout table -->
+        <div class="workoutBody">
+            <form method="POST" action="{{ url_for('log_workout') }}">
+                <table>
+                    <tr>
+                        <th>Workout ID (Auto)</th>
+                        <th>User ID (Auto)</th>
+                    </tr>
+                    <tr>
+                        <th>Workout Date</th>
+                        <td><input type="date" name="workout_date" id="workout_date" required></td>
+                    </tr>
+                    <tr>
+                        <th>Workout Type</th>
+                        <td>
+                            <select name="workout_type" id="workout_type" required>
+                                <option value="Push">Push</option>
+                                <option value="Pull">Pull</option>
+                                <option value="Legs">Legs</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Workout Notes</th>
+                        <td>
+                            <input type="text" name="workout_notes" id="workout_notes">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><button type="submit">Create Workout</button></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+    
+</body>
+</html>
