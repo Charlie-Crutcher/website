@@ -50,6 +50,12 @@ body {
     align-items: center;
     width: 100%;
 }
+.myBody2 {
+    margin-top: 5vh;
+    display: flexbox;
+    align-items: center;
+    width: 100%;
+}
 .workoutBody {
     padding-top: 2.5vh;
     padding-bottom: 2.5vh;

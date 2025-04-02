@@ -1,18 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Log</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Workout | Log Exercises</title>
+    <meta name="description" content="Charlie's programming portfolio homepage">
+    <meta name="keywords" content="HTML,CSS,JavaScript,Python,Discord.py,Portfolio">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../static/css/styles.css">
-    <link rel="stylesheet" href="../static/css/shapes.css">
+    <!-- Dark mode immediately applied on page load -->
     <style>
         body {
-            transition: all 10s ease;
+            transition: all 7.5s ease;
             transition: background-color 0.5s ease, color 0.5s ease;
             opacity: 0; /* Initially hidden */
             animation: fadeIn 2s forwards; /* Apply fade-in effect */
@@ -35,14 +38,12 @@
         }
     </style>
 </head>
-
-
 <body>
     <nav>
         <!-- ===== DESKTOP NAVBAR ===== -->
         <ul>
-            <li>
-                <a href="{{url_for('workouts')}}">BACK</a>
+            <li class="hideOnMobile">
+                <a href="{{url_for('workout_create')}}">BACK</a>
             </li>
             <li>
                 <a>
@@ -53,49 +54,51 @@
                 </a>
             </li>
         </ul>
+        <!-- ===== MOBILE NAVBAR (SIDEBAR) ===== -->
+        <ul class="sidebar">
+            <li onclick="hideSidebar()"><a style="cursor: pointer;"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#3C3D37"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></a></li>
+            <li>
+                <a href="#" class="active">HOME</a>
+            </li>
+            <li>
+                <a href="{{ url_for('cv')}}">CURRICULUM VITAE</a>
+            </li>
+            <li>
+                <a href="{{ url_for('portfolio')}}">PORTFOLIO</a>
+            </li>
+            <li>
+                <a href="{{ url_for('contact')}}">CONTACT</a>
+            </li>
+            <li>
+                <a class="noHover"></a>
+            </li>
+            <li>
+                <a href="{{ url_for('gamedev')}}" class="lowerSideBar">GAME DEV</a>
+            </li>
+            <li>
+                <a href="{{ url_for('photography')}}" class="lowerSideBar">PHOTOGRAPHY</a>
+            </li>
+            <li>
+                <a href="{{ url_for('workouts') }}">GYM TRACKER</a>
+            </li>
+        </ul>
+        <!-- ===== MOREBAR (MISC) ===== -->
+        <ul class="morebar">
+            <li>
+                <a href="{{ url_for('gamedev')}}">GAME DEV</a>
+            </li>
+            <li>
+                <a href="{{ url_for('photography')}}">PHOTOGRAPHY</a>
+            </li>
+            <li>
+                <a href="{{ url_for('workouts') }}">GYM TRACKER</a>
+            </li>
+        </ul>
     </nav>
-    <div class="myBody2">
-        <div class="shapes">
-        <h1>Create Workout</h1>
-        <p>Enter some generic information about your workout. Upon creation, you will be able to log all of your exercises!</p>
-        <br>
-        <!-- This form creates a new row for workout table -->
-        <div class="workoutBody">
-            <form method="POST" action=#>
-                <table>
-                    <tr>
-                        <th>Workout ID (Auto)</th>
-                        <th>User ID (Auto)</th>
-                    </tr>
-                    <tr>
-                        <th>Workout Date</th>
-                        <td><input type="date" name="workout_date" id="workout_date" required></td>
-                    </tr>
-                    <tr>
-                        <th>Workout Type</th>
-                        <td>
-                            <select name="workout_type" id="workout_type" required>
-                                <option value="Push">Push</option>
-                                <option value="Pull">Pull</option>
-                                <option value="Legs">Legs</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Workout Notes</th>
-                        <td>
-                            <input type="text" name="workout_notes" id="workout_notes">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2"><button type="submit">Create Workout</button></td>
-                    </tr>
-                </table>
-            </form>
-        </div>
-        </div>
+    <div class="myBody">
     </div>
-    <script src="../static/js/scripts.js">JS</script>
-    
+    <script src="../static/js/scripts.js"></script>
+
+
 </body>
 </html>

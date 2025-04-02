@@ -115,7 +115,7 @@ def workout_create():
 @app.route("/workout-exercises", methods=['GET', 'POST'])
 def workout_exercises():
     if request.method == 'POST':
-        f_workout_id = 1
+        f_workout_id = 1 # TODO - Change this to work for the user's actual workout ID instead of a hard-coded one.
         print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
         print(request.form['exercise_selection'])
         f_exercise_id = request.form['exercise_selection']
@@ -159,6 +159,13 @@ def workout_exercises():
             return render_template("workout-exercises.html", data=data, exercise=exercise)
         else:
             return "No workouts found."
+
+
+# ----- Workout App : Track Progress ----- #
+@app.route('/workout-tracking')
+def workout_tracking():
+    return render_template('workout-tracking.html')
+    
 
 
 @app.route("/workout-details")
