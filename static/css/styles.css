@@ -101,6 +101,15 @@ body {
 
 
 /* ----- PHOTO ALBUM ----- */
+.trackerBody {
+    display:grid;
+    background:var(--primary-color);
+    grid-template-columns: repeat(3, 1fr);
+    border-radius: 10px;
+    margin: 10vh 25vh 10vh;
+    gap: 20px;
+    padding: 20px;
+}
 .photoAlbum {
     display: grid;
     background:var(--primary-color);

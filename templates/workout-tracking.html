@@ -96,6 +96,34 @@
         </ul>
     </nav>
     <div class="myBody">
+        {% for row in workout_id %}
+        <h1>Workout ID: {{ row['workout_id']}}</h1>
+        <div class="trackerBody">
+            {% for row in workout_data %}
+            <table border="1">
+                <tr>
+                    <th>Exercise ID: {{ row['workout_exercise_id']}}</th>
+                    <th>Set 1</th>
+                    <th>Set 2</th>
+                    <th>Set 3</th>
+                </tr>
+                <tr>
+                    <th>Weight</th>
+                    <td>{{ row['set_1_weight']}}</td>
+                    <td>{{ row['set_2_weight']}}</td>
+                    <td>{{ row['set_3_weight']}}</td>
+                    
+                </tr>
+                <tr>
+                    <th>Reps</th>
+                    <td>{{ row['set_1_reps']}}</td>
+                    <td>{{ row['set_2_reps']}}</td>
+                    <td>{{ row['set_3_reps']}}</td>
+                </tr>
+            </table>
+            {% endfor %}
+        </div>
+        {% endfor %}
     </div>
     <script src="../static/js/scripts.js"></script>
 

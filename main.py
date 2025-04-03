@@ -162,9 +162,17 @@ def workout_exercises():
 
 
 # ----- Workout App : Track Progress ----- #
-@app.route('/workout-tracking')
+@app.route('/workout-tracking', methods=["POST", "GET"])
 def workout_tracking():
-    return render_template('workout-tracking.html')
+    with mydb.cursor(dictionary=True) as mycursor:
+        mycursor.execute("SELECT * FROM workout_exercise")
+        workout_data = mycursor.fetchall()
+        
+    with mydb.cursor(dictionary=True) as mycursor:
+        mycursor.execute("SELECT * FROM workout")
+        workout_id = mycursor.fetchall()          
+    
+    return render_template('workout-tracking.html', workout_data=workout_data, workout_id=workout_id)
     
 
 
