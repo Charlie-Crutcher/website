@@ -117,13 +117,13 @@
     </nav>
     <div class="myBody">
         <h1>Task List</h1>
-        <input type="text" id="todo-input" placeholder="Add task...">
-        <span onclick="newElement()" class="todo-button">Add</span>
-        <ul id="todo-list">
-            <li>Pull day at the gym</li>
-            <li>Finish workout tracker</li>
-            <li>Finish todo list</li>
-        </ul>
+        <form method="GET POST">
+            {% for row in task_data %}
+            {{row ['tasks_name']}}
+            {{row ['tasks_state']}}
+            {% endfor %}
+            
+        </form>
     </div>
 
     <script src="../static/js/scripts.js">Hello</script>

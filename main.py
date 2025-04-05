@@ -46,9 +46,25 @@ def portfolio():
     return render_template("portfolio.html")
 
 # ----- Todo List ----- #
-@app.route("/todo_list")
+@app.route("/todo_list", methods=['GET', 'POST'])
 def todo_list():
-    return render_template("todo-list.html")
+    with mydb.cursor(dictionary=True) as mycursor:
+        mycursor.execute("SELECT * FROM tasks")
+        task_data = mycursor.fetchall()
+        
+    if request.method == "POST":
+        tasks_name = ['tasks_name']
+        tasks_state = ['FALSE']
+        mycursor = mydb.cursor()
+        sql_insert_log = """
+        INSERT INTO tasks (tasks_name, tasks_state)
+        VALUES (%s, %s)
+        """
+        mycursor.execute(sql_insert_log, (tasks_name, tasks_state))
+        mydb.commit()
+    return render_template('todo-list.html', task_data=task_data)
+
+
 
 # ----- Workout App : Admin Page ----- #
 @app.route("/workoutadmin", methods=['GET', 'POST'])
