@@ -45,6 +45,10 @@ def photography():
 def portfolio():
     return render_template("portfolio.html")
 
+# ----- Todo List ----- #
+@app.route("/todo_list")
+def todo_list():
+    return render_template("todo-list.html")
 
 # ----- Workout App : Admin Page ----- #
 @app.route("/workoutadmin", methods=['GET', 'POST'])

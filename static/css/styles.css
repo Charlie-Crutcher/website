@@ -2,6 +2,7 @@
 :root {
     --base-color: white;
     --base-variant: #e8e9ed;
+    --base-variant-2: #d5d6d8;
     --text-color: #111528;
     --secondary-text: #232738;
     --primary-color: #0047AB;
@@ -13,6 +14,7 @@
 .darkmode {
     --base-color: #070b1d;
     --base-variant: #101425;
+    --base-variant-2: #1c2341;
     --text-color: white;
     --secondary-text: #a4a5b8;
     --primary-color: #0047AB;
@@ -412,6 +414,39 @@ a.lowerSideBar:hover{
       top: 0; }
 }
 /* ----- INTERACTIVE NAVIGATION ----- */
+
+/* ----- TODO LIST ----- */
+#todo-list ul {
+    margin: 0;
+    padding: 0;
+}
+#todo-list li {
+    border-radius: 10px;
+    cursor: pointer;
+    position: relative;
+    padding: 12px 8px 12px 40px;
+    background: var(--base-variant);
+    font-size: 18px;
+    transition: 0.2s;
+  
+    /* make the list items unselectable */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+#todo-list li:nth-child(odd) {
+    background-color: var(--base-variant-2);
+}
+#todo-list li:hover {
+    background-color: var(--primary-color);
+}
+#todo-list li.checked {
+    background-color: var(--secondary-text);
+    text-decoration: line-through;
+}
+
+
 
 
 
