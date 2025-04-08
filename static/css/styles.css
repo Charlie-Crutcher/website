@@ -186,8 +186,10 @@ h2 {
     margin-bottom: 24px;
     width: auto;
     color: var(--text-color);
-    text-align: center;
     }
+#h2Center {
+    text-align: center;
+}
     /* Portrait and Landscape */
     
     @media only screen 
@@ -233,10 +235,10 @@ hr {
 }
 p {
     font-size: 28px;
-    margin-left: 25%;
-    margin-right: 25%;
     font-style: italic;
     color: var(--text-color);
+}
+#pCenter {
     text-align: center;
 }
 /* ----- HEADINGS & HR ----- */
@@ -247,6 +249,14 @@ a {
     text-decoration: none;
     color:var(--text-color);
     font-size: 19px;
+}
+#backAnchor {
+    margin-left: 5%;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 0;
 }
 #closeMe {
     font-size: 32px;
@@ -447,6 +457,22 @@ a.lowerSideBar:hover{
 }
 
 
+/* ----- CODING PROGRESS ----- */
+.coddyJS {
+    background-color: var(--primary-color);
+    padding: 25px;
+    margin: 5%;
+    border-radius: 10px;
+}
+.coddyJS h3 {
+    color:var(--base-color);
+    font-size: 1.625em; /* 26px */
+}
+.coddyJS p {
+    color:var(--base-color);
+    font-size: 1.5em; /* 24px */
+    font-style: normal;
+}
 
 
 

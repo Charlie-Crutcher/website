@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Contact | Charlie Mark Crutcher</title>
+    <title>JavaScript Chapter 1 | Charlie Mark Crutcher</title>
     <meta name="description" content="Charlie's programming portfolio">
     <meta name="keywords" content="HTML,CSS,JavaScript,Python,Discord.py,Portfolio">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -59,7 +59,7 @@
                 <a href="{{ url_for('portfolio')}}">PORTFOLIO</a>
             </li>
             <li class="hideOnMobile">
-                <a href="#" class="active">CONTACT</a>
+                <a href="{{ url_for('contact')}}">CONTACT</a>
             </li>
             <li class="hideOnMobile moreButton" onclick=toggleMorebar()>
                 <a>
@@ -114,8 +114,52 @@
             </li>
         </ul>
     </nav>
-    <div class="myBody">
-        <h1>Coddy - JavaScript</h1>
+    <div class="myBody2">
+        <a href="{{url_for('code_coddy')}}" id="backAnchor">Back</a>
+        <div class="coddyJS"> <!-- TODO: Make drop down for each h3 that displays the <p> text, conserving space. -->
+            <h2 style="font-size: 2.5em; color:var(--base-color);">Chapter 1 - Variables</h2>
+            <p>A very basic first lesson. Important to learn some of the basic JS syntax.</p>
+        </div>
+
+        <div class="coddyJS">
+            <h3>1. Console.log</h3>
+            <p>JavaScript's version of the print command. Mostly used for debugging.</p>
+            <br>
+
+            <h3>2. Comments</h3>
+            <p>Comments on JavaScript are declared with '//' for single line comments and /* */ for multi-line comments.</p>
+            <p>It is good practice to leave single-line comments at the end of code lines.</p>
+            <br>
+
+            <h3>3. Iterative Language</h3>
+            <p>Similarly to Python, JavaScript is an iterative language, meaning it runs from top to bottom.</p>
+            <br>
+
+            <h3>4. Semicolons</h3>
+            <p>Similarly to Java, JS should have semicolons at the end of each command. Unlike Java however, JS will still run the program,
+                however it is good practice to always include semicolons in the correct places.
+            </p>
+            <br>
+
+            <h3>5. Variables</h3>
+            <p>To initialize a var in JS, the following format is used: "let varName= value".</p>
+            <p>Note: Coddy stores booleans with all lower case. However is it good practice to use capitalized booleans? 'True'! </p>
+            <br>
+
+            <h3>6. Naming Conventions</h3>
+            <p>Variables are case-sensitive in JS, and like other languages, cannot begin with a number.</p>
+            <p>The common practice for naming variables in JS is camelCase.</p>
+            <br>
+
+            <h3>7. Empty Variables</h3>
+            <p>Like other programming languages, JS allows us to declare variables without values. We can do this by
+                simply typing 'let myVariable'. This can be assigned a value later (or not).
+            </p>
+            <br>
+
+            <h3>8. Constants</h3>
+            <p>Declared with 'const' in the place of 'let': constants are simply variables that cannot be changed after declaration.</p>
+        </div>
     </div>
     <script src="../static/js/scripts.js">Hello</script>
 </body>
