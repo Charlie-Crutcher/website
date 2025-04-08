@@ -746,3 +746,11 @@ display: none;
 }
 
 /* ----- RESPONSIVE DESIGN ----- */
+
+/* ----- CODE PROGRESS PANELS ----- */
+.coddyPanel {
+    visibility: hidden;
+    position: absolute;
+    top: 20%;
+    z-index: -1;
+    }

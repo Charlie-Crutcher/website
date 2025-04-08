@@ -228,3 +228,22 @@ document.getElementById('workoutForm').addEventListener('submit', function(event
   .catch(error => alert('Error: ' + error));
 });
 
+
+// ----- Code Coddy Panels ----- //
+function showCoddyPanel01() {
+  page = document.getElementById("coddyPanel01");
+  if (page.style.visibility == "hidden") {
+    page.style.visibility = "visible";
+  } else {
+    page.style.visibility = "hidden";
+  }
+}
+
+function showCoddyPanel02() {
+  page2 = document.getElementById("coddyPanel02");
+  if (page2.style.visibility == "hidden") {
+    page2.style.visibility = "visible";
+  } else {
+    page2.style.visibility = "hidden";
+  }
+}
