@@ -3,8 +3,8 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Todo List | Charlie Crutcher</title>
-    <meta name="description" content="Charlie's programming portfolio homepage">
+    <title>Contact | Charlie Mark Crutcher</title>
+    <meta name="description" content="Charlie's programming portfolio">
     <meta name="keywords" content="HTML,CSS,JavaScript,Python,Discord.py,Portfolio">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,10 +12,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../static/css/styles.css">
-    <!-- Dark mode immediately applied on page load -->
     <style>
         body {
-            transition: all 7.5s ease;
+            transition: all 10s ease;
             transition: background-color 0.5s ease, color 0.5s ease;
             opacity: 0; /* Initially hidden */
             animation: fadeIn 2s forwards; /* Apply fade-in effect */
@@ -60,7 +59,7 @@
                 <a href="{{ url_for('portfolio')}}">PORTFOLIO</a>
             </li>
             <li class="hideOnMobile">
-                <a href="{{ url_for('contact')}}">CONTACT</a>
+                <a href="#" class="active">CONTACT</a>
             </li>
             <li class="hideOnMobile moreButton" onclick=toggleMorebar()>
                 <a>
@@ -78,7 +77,7 @@
         <ul class="sidebar">
             <li onclick="hideSidebar()"><a style="cursor: pointer;"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#3C3D37"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></a></li>
             <li>
-                <a href="{{url_for('index')}}">HOME</a>
+                <a href="{{ url_for('index')}}">HOME</a>
             </li>
             <li>
                 <a href="{{ url_for('cv')}}">CURRICULUM VITAE</a>
@@ -116,18 +115,8 @@
         </ul>
     </nav>
     <div class="myBody">
-        <div class="todo-list">
-            <h1>To-Do List</h1>
-            <div class="todo-row">
-                <input type="text" id="todo-input" placeholder="Add a task">
-                <button onclick="addTask()">Add</button>
-            </div>
-            <ul id="list-container">
-            </ul>
-
-        </div>
+        <h1>Coddy - JavaScript</h1>
     </div>
-
-    <script src="../static/js/scripts.js" defer>Hello</script>
+    <script src="../static/js/scripts.js">Hello</script>
 </body>
 </html>

@@ -65,6 +65,22 @@ def todo_list():
     return render_template('todo-list.html', task_data=task_data)
 
 
+# ----- Coding Progress : Code Home ----- #
+@app.route("/code_home")
+def code_home():
+    return render_template("code-home.html")
+
+
+# ----- Coding Progress : Coddy (Home) ----- #
+@app.route("/code_coddy")
+def code_coddy():
+    return render_template("code-coddy.html")
+
+
+# ----- Coding Progress : Coddy : JavaScript ----- #
+@app.route("/code_coddy_js")
+def code_coddy_js():
+    return render_template("code-coddy-js.html")
 
 # ----- Workout App : Admin Page ----- #
 @app.route("/workoutadmin", methods=['GET', 'POST'])

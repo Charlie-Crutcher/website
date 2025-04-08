@@ -137,15 +137,6 @@ modal.onclick = function(event) {
   });
 // ----- MISC DESKTOP DROPDOWN (MOREBAR) ----- // 
 
-
-// ----- TODO LIST ----- //
-var list = document.querySelector('#todo-list ul')
-list.addEventListener('click', function(ev) {
-  if (ev.AT_TARGET.tagName === 'li') {
-    ev.target.classList.toggle('checked');
-  }
-}, false);
-
 // ----- WORKOUT FORM SUBMISSION ----- //
 document.addEventListener('DOMContentLoaded', function () {
   // Ensure the 'Add Another Exercise' button works
