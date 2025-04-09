@@ -754,3 +754,20 @@ display: none;
     top: 20%;
     z-index: -1;
     }
+
+/* ----- TIMER ----- */
+#codeTimeSeconds {
+    margin: 0;
+    display: inline;
+   }
+#codeTimeMinutes {
+margin: 0;
+display:inline;
+}
+#codeTimeHours {
+margin: 0;
+display:inline;
+}
+#codeTimeStopButton {
+    visibility: hidden;
+}

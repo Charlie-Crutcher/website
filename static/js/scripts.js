@@ -1,80 +1,81 @@
-// ----- ACTIVE CLASS : NAVIGATION BAR ----- //
-const navLinkEls = document.querySelectorAll('.nav__link');
+// ----- SECTION 0 : NAVIGATION & THEMES ----- //
 
-navLinkEls.forEach(navLinkEl => {
-  navLinkEl.addEventListener('click', () => {
-    navLinkEl.classList.add('active');
-  })
-})
-// ----- END ----- //
+  // ----- SECTION 0.1 : ACTIVE CLASS : NAVIGATION BAR ----- //
+    const navLinkEls = document.querySelectorAll('.nav__link');
 
+    navLinkEls.forEach(navLinkEl => {
+      navLinkEl.addEventListener('click', () => {
+        navLinkEl.classList.add('active');
+      })
+    })
+  // ----- END ----- //
 
-// ----- DARK MODE / LIGHT MODE TOGGLE ----- //
-let darkmode = localStorage.getItem('darkmode');
-const themeSwitch = document.getElementById('theme-switch');
+  // ----- SECTION 0.2 : DARK MODE / LIGHT MODE TOGGLE ----- //
+    let darkmode = localStorage.getItem('darkmode');
+    const themeSwitch = document.getElementById('theme-switch');
 
-const enableDarkmode = () => {
-  document.body.classList.add('darkmode');
-  localStorage.setItem('darkmode', 'active');
-};
+    const enableDarkmode = () => {
+      document.body.classList.add('darkmode');
+      localStorage.setItem('darkmode', 'active');
+    };
 
-const disableDarkmode = () => {
-  document.body.classList.remove('darkmode');
-  localStorage.setItem('darkmode', 'null');
-};
+    const disableDarkmode = () => {
+      document.body.classList.remove('darkmode');
+      localStorage.setItem('darkmode', 'null');
+    };
 
-// Toggle dark mode based on current state
-themeSwitch.addEventListener('click', () => {
-  darkmode = localStorage.getItem('darkmode');
-  if (darkmode !== 'active') {
-    enableDarkmode();
-  } else {
-    disableDarkmode();
-  }
-});
-
-// Apply the theme on page load based on localStorage value
-if (darkmode === 'active') {
-  enableDarkmode();
-}
-
-// MODAL
-// Get the modal
-let modal = document.getElementById("myModal");
-
-// Get the image and insert it inside the modal
-let modalImg = document.getElementsByClassName("modal-content")[0];
-
-// Get all the images in the gallery
-let images = document.querySelectorAll(".photoItem img");
-
-// Loop through all images
-images.forEach(image => {
-    image.addEventListener("click", function() {
-        // Set the modal content to the clicked image
-        modalImg.src = this.src;
-        
-        // Show the modal
-        modal.style.display = "block";
+    // Toggle dark mode based on current state
+    themeSwitch.addEventListener('click', () => {
+      darkmode = localStorage.getItem('darkmode');
+      if (darkmode !== 'active') {
+        enableDarkmode();
+      } else {
+        disableDarkmode();
+      }
     });
-});
+    // Apply the theme on page load based on localStorage value
+    if (darkmode === 'active') {
+      enableDarkmode();
+    }
+  // ----- END ----- //
+// ----- END OF SECTION 0 ----- //
 
-// Get the <span> element that closes the modal
-let span = document.getElementsByClassName("close")[0];
 
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-    modal.style.display = "none";
-}
 
-// Close the modal if the user clicks anywhere outside the image
-modal.onclick = function(event) {
-    // Check if the click is on the modal background, not on the image
-    if (event.target === modal) {
+// ----- SECTION 1 : PHOTOGRAPHY / DISCORD BOT ----- //
+
+  // ----- SECTION 1.1 PHOTOGRAPHY : MODAL ----- //
+    // Get the modal
+    let modal = document.getElementById("myModal");
+    // Get the image and insert it inside the modal
+    let modalImg = document.getElementsByClassName("modal-content")[0];
+    // Get all the images in the gallery
+    let images = document.querySelectorAll(".photoItem img");
+    // Loop through all images
+    images.forEach(image => {
+        image.addEventListener("click", function() {
+            // Set the modal content to the clicked image
+            modalImg.src = this.src;
+            
+            // Show the modal
+            modal.style.display = "block";
+        });
+    });
+
+    // Get the <span> element that closes the modal
+    let span = document.getElementsByClassName("close")[0];
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
         modal.style.display = "none";
     }
-}
-// MODAL
+    // Close the modal if the user clicks anywhere outside the image
+    modal.onclick = function(event) {
+        // Check if the click is on the modal background, not on the image
+        if (event.target === modal) {
+            modal.style.display = "none";
+        }
+    }
+  // ----- END OF SECTION 1 ----- //
 
 
 // ----- MISC DESKTOP DROPDOWN (MOREBAR) ----- // 
@@ -246,4 +247,73 @@ function showCoddyPanel02() {
   } else {
     page2.style.visibility = "hidden";
   }
+}
+
+
+// ----- Coding Timer ----- //
+function startTimer() {
+
+  startButton = document.getElementById("codeTimeStartButton");
+  startButton.style.visibility = "hidden";
+
+  stopButton = document.getElementById("codeTimeStopButton");
+  stopButton.style.visibility = "visible";
+
+  htmlSeconds = document.getElementById("codeTimeSeconds"); // Text within the timer on HTML.
+  htmlMinutes = document.getElementById("codeTimeMinutes");
+  htmlHours = document.getElementById("codeTimeHours");
+
+  debugSeconds = document.getElementById("debugSeconds");
+
+  var totalTime = 0;
+  var timeSeconds = 0; // Default time value upon loading page.
+  var timeMinutes = 0;
+  var timeHours = 0;
+
+  var timer = setInterval(() => {
+    totalTime++;
+
+    // Adds a '0' before seconds if less than 10
+    if (timeSeconds < 10) {
+      htmlSeconds.innerHTML = "0" + timeSeconds;
+    }
+    else {
+      htmlSeconds.innerHTML = timeSeconds;
+    }
+
+    // Adds a '0' before minutes if less than 10
+    if (timeMinutes < 10) {
+      htmlMinutes.innerHTML = "0" + timeMinutes + ":"
+    }
+    else {
+      htmlMinutes.innerHTML = timeMinutes + ":";
+    }
+
+    // Adds a '0' before hours if less than 10
+    if (timeHours < 10) {
+      htmlHours.innerHTML = "0" + timeHours + ":";
+    }
+    else {
+      htmlHours.innerHTML = timeHours + ":";
+    }
+  }, 1000) // Time value increases every 1000ms (1 second).  
+
+
+  // Increases variable timeSeconds by 1 every second.
+  var intervalSeconds = setInterval(() => {
+    timeSeconds++;
+  }, 1000)
+
+  // Resets timeSeconds variable to 0 once reaching 60 seconds.
+  var timeoutSeconds= setInterval(() => {
+    timeSeconds = 0;
+    timeMinutes++;
+  }, 60000)
+
+  // Resets timeMinutes variable to 0 once reaching 60 minutes.
+  var intervalMinutes = setInterval(() => {
+    timeMinutes = 0;
+    timeHours++
+  }, 3600000)
+
 }
