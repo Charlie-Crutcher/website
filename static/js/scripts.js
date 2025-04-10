@@ -317,3 +317,7 @@ function startTimer() {
   }, 3600000)
 
 }
+
+function stopTimer() {
+  
+}

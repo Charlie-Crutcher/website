@@ -756,18 +756,63 @@ display: none;
     }
 
 /* ----- TIMER ----- */
-#codeTimeSeconds {
-    margin: 0;
-    display: inline;
-   }
-#codeTimeMinutes {
-margin: 0;
-display:inline;
-}
-#codeTimeHours {
-margin: 0;
-display:inline;
-}
-#codeTimeStopButton {
-    visibility: hidden;
-}
+#codeTimeWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    top: 12.5vh;
+    right: 2.5vw;
+    background-color: var(--base-variant);
+    border: 2px solid var(--primary-color);
+    border-radius: 16px;
+    padding: 10px;
+    width: fit-content;
+    margin: auto;
+    box-shadow: 10px 5px 5px hsla(0, 0%, 0%, 0.445);
+  }
+  
+  #codeTimeDisplay {
+    font-family: 'Courier New', monospace;
+    font-size: 1.5em;
+    color: var(--text-color);
+    background-color: var(--base-color);
+    border-radius: 10px;
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+    border: 2px solid var(--primary-color);
+  }
+  
+  #codeTimeDisplay span {
+    margin: 0 2px;
+  }
+  
+  #codeTimeButtons button {
+    background-color: #FF4C00;
+    border-radius: 12px;
+    color: white;
+    border: none;
+    box-shadow: 0 4px 2px -2px #cc3d00;
+    padding: 10px 20px;
+    font-size: 1rem;
+    margin: 0 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  #codeTimeButtons button:hover {
+    background-color: #cc3d00;
+    box-shadow: none;
+    transform: translateY(2px);
+  }
+  
+  @media (max-width: 600px) {
+    #codeTimeDisplay {
+      font-size: 2rem;
+    }
+  
+    #codeTimeButtons button {
+      font-size: 0.9rem;
+      padding: 8px 16px;
+    }
+  }
