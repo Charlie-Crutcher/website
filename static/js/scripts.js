@@ -319,5 +319,5 @@ function startTimer() {
 }
 
 function stopTimer() {
-  
+  totalTime.pause()
 }
